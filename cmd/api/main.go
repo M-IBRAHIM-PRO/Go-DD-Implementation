@@ -12,7 +12,7 @@ import (
 	borrowingsvc "library_system/internal/application/borrowing"
 	membersvc "library_system/internal/application/member"
 	"library_system/internal/infrastructure/events"
-	"library_system/internal/infrastructure/postgres"
+	"library_system/internal/infrastructure/database"
 	httphandler "library_system/internal/interfaces/http"
 )
 
@@ -39,9 +39,9 @@ func main() {
 	log.Println("Connected to database")
 
 	// Infrastructure
-	bookRepo   := postgres.NewBookRepository(db)
-	memberRepo := postgres.NewMemberRepository(db)
-	borrowRepo := postgres.NewBorrowRepository(db)
+	bookRepo   := database.NewBookRepository(db)
+	memberRepo := database.NewMemberRepository(db)
+	borrowRepo := database.NewBorrowRepository(db)
 	dispatcher := events.NewLogDispatcher()
 
 	// Application services
